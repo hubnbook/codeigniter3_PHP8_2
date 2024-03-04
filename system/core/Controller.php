@@ -80,6 +80,7 @@ class CI_Controller {
 	public $input;
 	public $lang;
 	public $output;
+	public $db;
 
 
 	/**

@@ -296,7 +296,7 @@ spl_autoload_register(static function ($class_name) {
 		// echo $fullPath;
 		require_once($fullPath);
 	}else{
-		echo "Not foud: " . $class_name . "<br>";
+//		echo "Not foud: " . $class_name . "<br>";
 	}
 
 
