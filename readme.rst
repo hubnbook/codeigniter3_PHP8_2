@@ -73,4 +73,4 @@ contributors to the CodeIgniter project and you, the CodeIgniter user.
 ***************
 Customize
 ***************
-For compatable PHP 8.2
+For compatible PHP 8.2
