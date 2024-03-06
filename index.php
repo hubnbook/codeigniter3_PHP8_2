@@ -288,6 +288,9 @@ define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
  */
 
 spl_autoload_register(static function ($class_name) {
+
+	$isFound = false;
+	/*
 	// echo $class_name;
 	if (substr_count($class_name, "core\\CI_") > 0) {
 		$class_name = str_replace("CI_", "", $class_name);
@@ -295,8 +298,52 @@ spl_autoload_register(static function ($class_name) {
 		$fullPath = str_replace("\\", "/", $fullPath);
 		// echo $fullPath;
 		require_once($fullPath);
-	}else{
-//		echo "Not foud: " . $class_name . "<br>";
+		$isFound = true;
+	}
+
+	if (substr_count($class_name, "CI_") > 0) {
+		$class_name = str_replace("CI_", "", $class_name);
+		$fullPath = FCPATH . SYSDIR . DIRECTORY_SEPARATOR . "core/".  $class_name . '.php';
+		$fullPath = str_replace("\\", "/", $fullPath);
+		// echo $fullPath;
+		require_once($fullPath);
+		$isFound = true;
+	}
+			echo (!$isFound)?"Not foud: " . $class_name . "<br>" : "found " . $class_name . "<br>";
+			*/
+
+	$classpath = [
+		"system",
+		"system/core",
+		"system/core/compat",
+		"system/database",
+		"system/database/drivers",
+		"system/database/drivers/mysqli",
+		"system/database/drivers/sqlsrv",
+		"system/libraries/",
+		"system/libraries/Cache",
+		"system/libraries/Cache/drivers",
+		"system/Session",
+		"system/Session/drivers",
+		"application/controllers",
+		"application/models",
+		"application/models/process",
+	];
+
+	if (!$isFound) {
+		foreach ($classpath as $v) {
+			if (substr_count($class_name, "CI_") > 0) {
+				$class_name = str_replace("CI_", "", $class_name);
+			}
+			$filePath = FCPATH . $v . DIRECTORY_SEPARATOR . $class_name . ".php";
+			if(file_exists($filePath)){
+				require_once($filePath);
+				// echo "<font color='green'>found file: " . $filePath . "</font><br>";
+				break;
+			}else{
+				// echo "Not found file: " . $filePath . "<br>";
+			}
+		}
 	}
 
 
