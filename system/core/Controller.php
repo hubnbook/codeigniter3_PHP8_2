@@ -1,6 +1,6 @@
 <?php
 
-namespace core;
+//namespace core;
 
 /**
  * CodeIgniter
@@ -102,7 +102,7 @@ class CI_Controller
 
 		// $this->load =& load_class('Loader', 'core');
 
-		$this->load = new \core\CI_Loader();
+		$this->load = new CI_Loader();
 		$this->load->initialize();
 		//
 		// Initial parameter
