@@ -107,6 +107,8 @@ class CI_DB_mysqli_driver extends CI_DB {
 	 */
 	protected $_mysqli;
 
+	public $failover;
+
 	// --------------------------------------------------------------------
 
 	/**
