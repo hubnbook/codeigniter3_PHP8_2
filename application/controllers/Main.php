@@ -1,13 +1,25 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Main extends CI_Controller
+{
 
-    public function index(){
+    public function index()
+    {
 
         $this->load->view('welcome_message');
 
-        $this->load->database();
+        // try {
+
+            $this->load->database();
+
+            $this->load->model("process\UserProcess");
+
+            $up = new UserProcess();
+            $up->index();
+        // } catch (Exception $ex) {
+        //     echo "RuntimeException Error: " . print_r($ex->getTraceAsString(), true);
+        // }
     }
 }
