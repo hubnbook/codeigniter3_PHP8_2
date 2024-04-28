@@ -1,4 +1,6 @@
 <?php
+
+use \core\CI_Lang;
 /**
  * CodeIgniter
  *

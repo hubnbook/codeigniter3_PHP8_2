@@ -79,9 +79,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+	<h1>Welcome to CodeIgniter! for PHP 8.2</h1>
 
 	<div id="body">
+		<p>Current Your PHP version</p>
+		<code><?php echo phpversion(); ?></code>
+
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 
 		<p>If you would like to edit this page you'll find it located at:</p>
@@ -93,6 +96,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="userguide3/">User Guide</a>.</p>
 
 		<code>declare CodeIgniter Core class by New instance like such as $a = new \core\CI_Model()</code>
+
+		<p>You can load view on View PHP file</p>
+		<?php
+			// print_r($this);
+			$this->load->view("welcome_panel", array("name"=> "Nattakarn"));
+		?>
+	</div>
+
+	<h1>Data from Controller</h1>
+	<div id="body">
+		<p>Student list</p>
+		<code>
+			<?php foreach($student AS $v){ ?>
+				<li><?php echo $v->first_name . " " . $v->last_name; ?></li>
+			<?php } ?>
+		</code>
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>

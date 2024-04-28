@@ -91,6 +91,8 @@ class CI_DB_sqlsrv_driver extends CI_DB {
 	 */
 	protected $_quoted_identifier = TRUE;
 
+	public $failover;
+
 	// --------------------------------------------------------------------
 
 	/**

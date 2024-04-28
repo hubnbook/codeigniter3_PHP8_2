@@ -1,4 +1,11 @@
 <?php
+
+use \core\CI_DB_Cache;
+use \core\CI_DB_result;
+use \core\CI_DB_pdo_driver;
+use \core\CI_DB_query_builder;
+use \core\CI_DB_mysqli_driver;
+
 /**
  * CodeIgniter
  *
@@ -1748,7 +1755,8 @@ abstract class CI_DB_driver {
 	 */
 	public function display_error($error = '', $swap = '', $native = FALSE)
 	{
-		$LANG =& load_class('Lang', 'core');
+		// $LANG =& load_class('Lang', 'core');
+		$LANG = new \core\CI_Lang();
 		$LANG->load('db');
 
 		$heading = $LANG->line('db_error_heading');
@@ -1786,7 +1794,8 @@ abstract class CI_DB_driver {
 			}
 		}
 
-		$error =& load_class('Exceptions', 'core');
+		// $error =& load_class('Exceptions', 'core');
+		$error = new \core\CI_Exceptions();
 		echo $error->show_error($heading, $message, 'error_db');
 		exit(8); // EXIT_DATABASE
 	}

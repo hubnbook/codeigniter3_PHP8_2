@@ -1,5 +1,4 @@
 <?php
-namespace core;
 
 /**
  * CodeIgniter
@@ -511,6 +510,9 @@ class CI_Loader {
 	 */
 	public function view($view, $vars = array(), $return = FALSE)
 	{
+		if(empty($this->load)){
+			$this->load = new CI_Loader();
+		}
 		return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
 	}
 
@@ -944,6 +946,9 @@ class CI_Loader {
 		// to become accessible from within the Controller and Model functions.
 		$_ci_CI =& get_instance();
 
+		//
+		// comment becuase PHP 8.2 can not creation by Dynamic properties
+		/*
 		foreach (get_object_vars($_ci_CI) as $_ci_key => $_ci_var)
 		{
 			if ( ! isset($this->$_ci_key))
@@ -951,6 +956,7 @@ class CI_Loader {
 				$this->$_ci_key =& $_ci_CI->$_ci_key;
 			}
 		}
+		*/
 
 		/*
 		 * Extract and cache variables
