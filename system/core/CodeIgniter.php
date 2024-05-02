@@ -303,6 +303,7 @@ if ( ! is_php('5.4'))
 	// $UNI =& load_class('Utf8', 'core');
 
 	$UNI = new \core\CI_Utf8();
+	$UNI =& $UNI;
 
 /*
  * ------------------------------------------------------
@@ -312,6 +313,7 @@ if ( ! is_php('5.4'))
 	// $URI =& load_class('URI', 'core');
 
 	$URI = new \core\CI_URI();
+	$URI =& $URI;
 
 /*
  * ------------------------------------------------------
@@ -325,6 +327,8 @@ if ( ! is_php('5.4'))
 
 
 	$RTR = new \core\CI_Router($routing);
+	$RTR =& $RTR;
+	$URI = $RTR->uri;
 	// echo "<pre>";
 	// print_r($RTR);
 	// echo "</pre>";	
@@ -336,6 +340,7 @@ if ( ! is_php('5.4'))
 	// $OUT =& load_class('Output', 'core');
 
 	$OUT = new \core\CI_Output();
+	$OUT =& $OUT;
 
 /*
  * ------------------------------------------------------
@@ -354,6 +359,7 @@ if ( ! is_php('5.4'))
  */
 	// $SEC =& load_class('Security', 'core');
 	$SEC = new \core\CI_Security();
+	$SEC =& $SEC;
 
 /*
  * ------------------------------------------------------
@@ -362,6 +368,7 @@ if ( ! is_php('5.4'))
  */
 	// $IN	=& load_class('Input', 'core');
 	$IN = new \core\CI_Input();
+	$IN =& $IN;
 
 /*
  * ------------------------------------------------------
@@ -370,6 +377,7 @@ if ( ! is_php('5.4'))
  */
 	// $LANG =& load_class('Lang', 'core');
 	$LANG = new \core\CI_Lang();
+	$LANG =& $LANG;
 /*
  * ------------------------------------------------------
  *  Load the app controller and local controller
