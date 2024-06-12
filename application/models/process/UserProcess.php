@@ -3,11 +3,9 @@
 class UserProcess extends CI_Model
 {
 
-    public function index()
+    public function index($do, $paramter)
     {
-        $u = new UserModel();
-        $u->index();
 
-        echo base_url();
+        $this->load->view("user/user_list", $paramter);
     }
 }

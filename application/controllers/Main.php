@@ -1,48 +1,78 @@
 <?php
 //use core\Controllers;
 
+use model\Room;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Main extends CI_Controller
 {
     // public $UserProcess;
     public $user;
+    public $upload;
 
     public function __construct()
-    {   
+    {
         parent::__construct();
-        // $this->UserProcess = new UserProcess();
+        $this->load->helper(
+            array(
+                "form",
+                "url"
+            )
+
+        );
     }
 
-    public function index()
+    public function index($action = "", $process = "")
     {
         try {
 
-            $this->load->helper(
-                "url"
-            );
+            // $action = $this->input->post_get("action");
 
-            $this->load->model("UserModel", "user");
-
-            // echo base_url("");
-
-            // $this->load->view('errors/html/error_404', array("heading" => "Fuck Man", "message" => "Yes...."));
-            $s = $this->user->listDB(new UserModel);
-            
-            // echo "<pre>";
-            // print_r($s);
-            // echo "</pre>";
-
-            // echo "Run UserProcess<br>";
-            // $this->load->model("process/UserProcess");
-
-            $up = new UserProcess();
-            $up->index();
-
-            
-            $this->load->view('welcome_message', array("student"=> $s));
-
+            switch ($action) {
+                case "room":
+                    $rp = new \models\process\Room();
+                    $rp->index();
+                    break;
+                case "user":
+                    $up = new UserProcess();
+                    $up->index($do = "", array());
+                    break;
+                default:
+                    $this->home();
+                    break;
+            }
         } catch (RuntimeException $ex) {
+        }
+    }
+
+    public function home()
+    {
+        $this->load->model("UserModel", "user");
+
+        $s = $this->user->listDB(new UserModel);
+
+        $this->load->view('welcome_message', array("student" => $s));
+    }
+
+    public function do_upload()
+    {
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10000000;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('userfile')) {
+            $error = array('error' => $this->upload->display_errors());
+            print_r($error);
+            $this->load->view('welcome_message', $error);
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+
+            $this->load->view('upload/upload_success', $data);
         }
     }
 }

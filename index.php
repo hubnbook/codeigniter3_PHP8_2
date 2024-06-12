@@ -326,6 +326,7 @@ spl_autoload_register(static function ($class_name) {
 		"system/Session",
 		"system/Session/drivers",
 		"application/controllers",
+		"application/",
 		"application/models",
 		"application/models/process",
 	];
